@@ -1,0 +1,21 @@
+{
+  "name": "restaurant-app-backend",
+  "version": "1.0.0",
+  "description": "Express API for the Restaurant Booking and Review Platform (CSE 412)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "keywords": [],
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.6",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.1",
+    "pg": "^8.20.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
