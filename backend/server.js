@@ -20,6 +20,7 @@ const userRoutes = require('./routes/userRoutes');
 const reservationRoutes = require('./routes/reservationRoutes');
 const reviewRoutes = require('./routes/reviewRoutes');
 const platformRoutes = require('./routes/platformRoutes');
+const restaurantPlatformRoutes = require('./routes/restaurantPlatformRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
 
 const errorHandler = require('./middleware/errorHandler');
@@ -47,6 +48,7 @@ app.get('/', (req, res) => {
       reservations: 'GET /api/reservations',
       reviews: 'GET /api/reviews',
       platforms: 'GET /api/platforms',
+      restaurantPlatforms: 'GET /api/restaurant-platforms',
       dashboardStats: 'GET /api/dashboard/stats',
     },
   });
@@ -78,6 +80,7 @@ app.use('/api/users', userRoutes);
 app.use('/api/reservations', reservationRoutes);
 app.use('/api/reviews', reviewRoutes);
 app.use('/api/platforms', platformRoutes);
+app.use('/api/restaurant-platforms', restaurantPlatformRoutes);
 app.use('/api/dashboard', dashboardRoutes);
 
 // 404 for any unmatched route
