@@ -1,6 +1,6 @@
-/**
- * Reservation controller — request handling, validation, SQL queries, JSON.
- * Mirrors schema CHECK constraints so callers get readable 400s instead of 500s.
+/*
+  Reservation controller — request handling, validation, SQL queries, JSON.
+  Mirrors schema CHECK constraints so callers get readable 400s instead of 500s.
  */
 
 const pool = require('../db');
@@ -12,7 +12,7 @@ function parseId(idStr) {
   return Number.isInteger(id) && id > 0 ? id : null;
 }
 
-/** GET /api/reservations — reservations joined with users and restaurants. */
+/* GET /api/reservations — reservations joined with users and restaurants. */
 async function listReservations(req, res) {
   try {
     const sql = `
@@ -43,7 +43,7 @@ async function listReservations(req, res) {
   }
 }
 
-/** POST /api/reservations — create a reservation (reservation_id is auto). */
+/* POST /api/reservations — create a reservation (reservation_id is auto). */
 async function createReservation(req, res) {
   const {
     user_id,
@@ -108,7 +108,7 @@ async function createReservation(req, res) {
   }
 }
 
-/** PUT /api/reservations/:id — update editable fields (full update). */
+/* PUT /api/reservations/:id — update editable fields (full update). */
 async function updateReservation(req, res) {
   const id = parseId(req.params.id);
   if (id === null) {
@@ -158,7 +158,7 @@ async function updateReservation(req, res) {
   }
 }
 
-/** PATCH /api/reservations/:id/cancel — set status='cancelled'. */
+/* PATCH /api/reservations/:id/cancel — set status='cancelled'. */
 async function cancelReservation(req, res) {
   const id = parseId(req.params.id);
   if (id === null) {
@@ -187,7 +187,7 @@ async function cancelReservation(req, res) {
   }
 }
 
-/** DELETE /api/reservations/:id — remove a reservation. */
+/* DELETE /api/reservations/:id — remove a reservation. */
 async function deleteReservation(req, res) {
   const id = parseId(req.params.id);
   if (id === null) {

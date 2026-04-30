@@ -1,6 +1,4 @@
-/**
- * Platform controller — request handling, validation, SQL queries, JSON.
- */
+/* Platform controller — request handling, validation, SQL queries, JSON. */
 
 const pool = require('../db');
 

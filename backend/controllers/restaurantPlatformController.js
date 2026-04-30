@@ -1,11 +1,11 @@
-/**
- * Restaurant ↔ Platform mappings controller.
- * Mounted under /api/restaurant-platforms by routes/restaurantPlatformRoutes.js.
+/*
+  Restaurant ↔ Platform mappings controller.
+  Mounted under /api/restaurant-platforms by routes/restaurantPlatformRoutes.js.
  */
 
 const pool = require('../db');
 
-/** GET /api/restaurant-platforms — list all mappings with names. */
+/* GET /api/restaurant-platforms — list all mappings with names. */
 async function listRestaurantPlatforms(req, res) {
   try {
     const sql = `

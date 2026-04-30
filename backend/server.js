@@ -1,7 +1,6 @@
 /**
- * Express application entry point.
- *
- * Responsibilities:
+ * Express application entry point. Generally it will
+ * 
  *  - load env, configure middleware (CORS, JSON body parsing)
  *  - mount feature routers from ./routes/*.Routes.js
  *  - expose health-check endpoints (GET / and GET /api/test-db)
@@ -31,9 +30,7 @@ const PORT = Number(process.env.PORT) || 3000;
 app.use(cors());
 app.use(express.json());
 
-// ---------------------------------------------------------------------------
 // Health & diagnostics
-// ---------------------------------------------------------------------------
 
 app.get('/', (req, res) => {
   res.json({
@@ -72,9 +69,7 @@ app.get('/api/test-db', async (req, res) => {
   }
 });
 
-// ---------------------------------------------------------------------------
 // Feature routers
-// ---------------------------------------------------------------------------
 app.use('/api/restaurants', restaurantRoutes);
 app.use('/api/users', userRoutes);
 app.use('/api/reservations', reservationRoutes);

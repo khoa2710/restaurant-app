@@ -1,6 +1,4 @@
-/**
- * Dashboard routes — mount path: /api/dashboard
- */
+// Dashboard routes — mount path: /api/dashboard
 
 const express = require('express');
 const controller = require('../controllers/dashboardController');

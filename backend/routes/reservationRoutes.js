@@ -1,6 +1,4 @@
-/**
- * Reservations routes — mount path: /api/reservations
- */
+// Reservations routes — mount path: /api/reservations
 
 const express = require('express');
 const controller = require('../controllers/reservationController');

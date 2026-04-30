@@ -1,6 +1,6 @@
-/**
- * Review controller — request handling, validation, SQL queries, JSON.
- * Mirrors schema CHECK rating BETWEEN 1 AND 5.
+/*
+  Review controller — request handling, validation, SQL queries, JSON.
+  Mirrors schema CHECK rating BETWEEN 1 AND 5.
  */
 
 const pool = require('../db');
@@ -18,7 +18,7 @@ function isValidRating(value) {
     && value >= MIN_RATING && value <= MAX_RATING;
 }
 
-/** GET /api/reviews — reviews joined with users and restaurants. */
+/* GET /api/reviews — reviews joined with users and restaurants. */
 async function listReviews(req, res) {
   try {
     const sql = `
@@ -48,7 +48,7 @@ async function listReviews(req, res) {
   }
 }
 
-/** POST /api/reviews — create a review (review_id is auto). */
+/* POST /api/reviews — create a review (review_id is auto). */
 async function createReview(req, res) {
   const {
     user_id,
@@ -106,7 +106,7 @@ async function createReview(req, res) {
   }
 }
 
-/** PUT /api/reviews/:id — update review fields (full update). */
+/* PUT /api/reviews/:id — update review fields (full update). */
 async function updateReview(req, res) {
   const id = parseId(req.params.id);
   if (id === null) {
@@ -149,7 +149,7 @@ async function updateReview(req, res) {
   }
 }
 
-/** DELETE /api/reviews/:id — remove a review. */
+/* DELETE /api/reviews/:id — remove a review. */
 async function deleteReview(req, res) {
   const id = parseId(req.params.id);
   if (id === null) {

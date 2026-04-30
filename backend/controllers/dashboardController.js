@@ -1,6 +1,4 @@
-/**
- * Dashboard controller — aggregate counts and average review rating.
- */
+/* Dashboard controller — aggregate counts and average review rating. */
 
 const pool = require('../db');
 

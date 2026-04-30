@@ -1,6 +1,4 @@
-/**
- * Restaurant ↔ Platform mapping routes — mount path: /api/restaurant-platforms
- */
+// Restaurant ↔ Platform mapping routes — mount path: /api/restaurant-platforms
 
 const express = require('express');
 const controller = require('../controllers/restaurantPlatformController');

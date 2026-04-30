@@ -1,5 +1,5 @@
-/**
- * Restaurants routes — mount path: /api/restaurants
+/*
+  Restaurants routes — mount path: /api/restaurants
  */
 
 const express = require('express');

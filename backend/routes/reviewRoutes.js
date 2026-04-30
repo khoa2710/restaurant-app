@@ -1,7 +1,5 @@
-/**
- * Reviews routes — mount path: /api/reviews
- */
-
+// Reviews routes — mount path: /api/reviews
+ 
 const express = require('express');
 const controller = require('../controllers/reviewController');
 

@@ -1,17 +1,13 @@
-/**
- * User controller — request handling, validation, SQL queries, JSON.
- * Never returns password_hash to clients.
- *
- * Note: real password hashing (bcrypt/argon2) is out of scope for Phase 3.
- * `password_hash` is NOT NULL in the schema, so we insert a server-side
- * placeholder when creating users via the API.
+/*
+  User controller — request handling, validation, SQL queries, JSON.
+  Never returns password_hash to clients.
  */
 
 const pool = require('../db');
 
 const PLACEHOLDER_PASSWORD_HASH = 'pending_password_setup';
 
-/** GET /api/users — list users (no password_hash). */
+/* GET /api/users — list users (no password_hash). */
 async function listUsers(req, res) {
   try {
     const sql = `
@@ -30,7 +26,7 @@ async function listUsers(req, res) {
   }
 }
 
-/** POST /api/users — create a user. No password field accepted. */
+/* POST /api/users — create a user. No password field accepted. */
 async function createUser(req, res) {
   const { name, email, phone } = req.body || {};
 

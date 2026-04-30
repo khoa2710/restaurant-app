@@ -1,6 +1,6 @@
-/**
- * Restaurant controller — request handling, validation, SQL queries, JSON.
- * Mounted under /api/restaurants by routes/restaurantRoutes.js.
+/*
+  Restaurant controller — request handling, validation, SQL queries, JSON.
+  Mounted under /api/restaurants by routes/restaurantRoutes.js.
  */
 
 const pool = require('../db');
@@ -10,7 +10,7 @@ function parseId(idStr) {
   return Number.isInteger(id) && id > 0 ? id : null;
 }
 
-/** GET /api/restaurants — all restaurants with average review rating. */
+/* GET /api/restaurants — all restaurants with average review rating. */
 async function listRestaurants(req, res) {
   try {
     const sql = `
@@ -40,7 +40,7 @@ async function listRestaurants(req, res) {
   }
 }
 
-/** GET /api/restaurants/:id — single restaurant + average rating. */
+/* GET /api/restaurants/:id — single restaurant + average rating. */
 async function getRestaurant(req, res) {
   const id = parseId(req.params.id);
   if (id === null) {
@@ -79,7 +79,7 @@ async function getRestaurant(req, res) {
   }
 }
 
-/** GET /api/restaurants/:id/reviews — reviews for one restaurant. */
+/* GET /api/restaurants/:id/reviews — reviews for one restaurant. */
 async function getRestaurantReviews(req, res) {
   const id = parseId(req.params.id);
   if (id === null) {
