@@ -119,7 +119,7 @@ export default function Users() {
                           display: 'flex', alignItems: 'center', justifyContent: 'center',
                           fontSize: 14, fontWeight: 700, flexShrink: 0
                         }}>
-                          {u.name[0].toUpperCase()}
+                          {(u.name?.[0] || '?').toUpperCase()}
                         </div>
                         <span style={{ fontWeight: 500 }}>{u.name}</span>
                       </div>

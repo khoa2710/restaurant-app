@@ -106,6 +106,7 @@ function ReviewModal({ mode, data, users, restaurants, onClose, onSave }) {
               <option value="">— None —</option>
               <option value="Yelp">Yelp</option>
               <option value="Google">Google</option>
+              <option value="TripAdvisor">TripAdvisor</option>
               <option value="Direct">Direct</option>
             </select>
           </div>

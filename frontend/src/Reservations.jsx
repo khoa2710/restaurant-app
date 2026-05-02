@@ -14,7 +14,11 @@ function statusTag(s) {
 function ReservationModal({ mode, data, users, restaurants, onClose, onSave }) {
   const [form, setForm] = useState(
     mode === 'edit'
-      ? { ...data }
+      ? {
+          ...data,
+          reservation_date: data.reservation_date?.slice(0, 10) || '',
+          reservation_time: data.reservation_time?.slice(0, 5) || '',
+        }
       : { user_id: '', restaurant_id: '', reservation_date: '', reservation_time: '', party_size: 1, status: 'pending' }
   );
   const [saving, setSaving] = useState(false);

@@ -1,43 +1,41 @@
-# Restaurant Booking & Review Platform
+# Restaurant Booking & Review Platform — Frontend
 
-A full-stack web application for browsing restaurants, making reservations, and leaving reviews.
+React + Vite client for the CSE 412 Restaurant Booking and Review Platform.
 
-## Team Members
+## Team
+
 - Colton Jim
 - Khoa Vo
 - Kowan Atcitty
 
 ## Tech Stack
-- **Frontend:** React + Vite
-- **Backend:** Node.js + Express
-- **Database:** PostgreSQL
+
+- **Framework:** React 19 + Vite 8
+- **Routing:** react-router-dom 7
+- **API client:** native `fetch` (see `src/api.js`)
 
 ## How to Run
 
-### 1. Start the database
-```bash
-export PGPORT=8888
-export PGHOST=/tmp
-pg_ctl -D $HOME/db412 -o "-k /tmp" start
-```
+The frontend talks to the backend API. Make sure the backend (and PostgreSQL) are running first — see the root `README.md`.
 
-### 2. Start the backend
-```bash
-cd backend
-node server.js
-```
-
-### 3. Start the frontend
 ```bash
 cd frontend
+npm install
 npm run dev
 ```
 
-Then open http://localhost:5173 in your browser.
+Then open **http://localhost:5173** in your browser.
+
+To point the client at a different backend, set `VITE_API_URL` (defaults to `http://localhost:3000`):
+
+```bash
+VITE_API_URL=http://localhost:4000 npm run dev
+```
 
 ## Features
-- **Dashboard** — overview of stats including total users, restaurants, reservations, and reviews
-- **Restaurants** — browse and search restaurants by name, city, or cuisine type
-- **Reservations** — make, edit, cancel, and delete reservations
-- **Reviews** — write, edit, and delete reviews with star ratings
-- **Users** — view and add users
+
+- **Dashboard** — overview of stats (total users, restaurants, reservations, reviews, average rating, confirmed/cancelled) and a top-rated restaurants table.
+- **Restaurants** — browse and search by name, city, or cuisine type; restaurant detail page with reviews.
+- **Reservations** — make, edit, cancel, and delete reservations.
+- **Reviews** — write, edit, and delete reviews with star ratings.
+- **Users** — view and add users.

@@ -1,12 +1,18 @@
 # Restaurant Booking and Review Platform
 
-A web application where users can browse restaurants, make reservations, and read/write reviews. Built as a CSE 412 database course project.
+A full-stack web application for browsing restaurants, making reservations, and writing reviews. Built as a CSE 412 database course project.
+
+## Team
+
+- Colton Jim
+- Khoa Vo
+- Kowan Atcitty
 
 ## Tech Stack
 
 - **Database:** PostgreSQL
-- **Backend:** Node.js, Express, `pg`, `cors`, `dotenv` (see `backend/`)
-- **Frontend:** to be added
+- **Backend:** Node.js, Express, `pg`, `cors`, `dotenv` (in `backend/`)
+- **Frontend:** React + Vite (in `frontend/`)
 
 ## Project Structure
 
@@ -16,14 +22,15 @@ restaurant-app/
 │   ├── schema.sql
 │   ├── seed.sql
 │   └── queries.sql
-├── backend/         # Node.js + Express API (`server.js`, `db.js`, `routes/`)
-├── frontend/        # Web client (to be implemented)
+├── backend/         # Express API (server.js, db.js, routes/, controllers/, middleware/)
+│   └── API_DOCUMENTATION.md
+├── frontend/        # React + Vite client
 ├── .gitignore
 ├── .env.example
 └── README.md
 ```
 
-All PostgreSQL SQL for this project lives in `**database/**`: table definitions (`schema.sql`), demo data (`seed.sql`), and reference queries (`queries.sql`).
+All PostgreSQL SQL lives in `**database/**`: table definitions (`schema.sql`), demo data (`seed.sql`), and reference queries (`queries.sql`).
 
 ## Main Database Tables
 
@@ -34,51 +41,52 @@ All PostgreSQL SQL for this project lives in `**database/**`: table definitions 
 - `reservations` — bookings made by users
 - `restaurant_platforms` — junction table linking restaurants and platforms (M:N)
 
-## Setup Plan
+## How to Run
 
-1. Install PostgreSQL locally and create a database (e.g. `restaurant_app`).
-2. Copy `.env.example` to `.env` and fill in your DB credentials.
-3. Run the SQL files in order (when you are ready to load the database):
-  ```bash
-   psql -U $DB_USER -d $DB_NAME -f database/schema.sql
-   psql -U $DB_USER -d $DB_NAME -f database/seed.sql
-  ```
-4. Start the backend API (from the `backend/` folder — see **Backend setup** below).
-5. (Later) Add the frontend in `frontend/`.
+### 1. Database
 
-## Backend setup
+Install PostgreSQL, create the database, and load the SQL files:
 
-The API lives in `**backend/`**. Environment variables are read from `**backend/.env`** (never commit this file; it is ignored by git via the root `.gitignore`).
+```bash
+createdb restaurant_app
+psql -U $DB_USER -d restaurant_app -f database/schema.sql
+psql -U $DB_USER -d restaurant_app -f database/seed.sql
+```
 
-1. Open a terminal and go to the backend folder:
-  ```bash
-   cd backend
-  ```
-2. If you do not have `package.json` yet, initialize the project (optional if the file is already in the repo):
-  ```bash
-   npm init -y
-  ```
-   Then align `package.json` with the repo version (name, scripts, dependencies) or skip this step when cloning from GitHub.
-3. Install dependencies:
-  ```bash
-   npm install
-  ```
-4. Create your local env file from the example:
-  ```bash
-   cp .env.example .env
-  ```
-   Edit `.env` with your real PostgreSQL user, password, database name, and port. Match the database you created for this project.
-5. Run the development server (auto-restarts on file changes with Node’s `--watch`):
-  ```bash
-   npm run dev
-  ```
-   Or run once without watch:
-6. Verify the server:
-  - **GET** [http://localhost:3000/](http://localhost:3000/) — JSON welcome payload  
-  - **GET** [http://localhost:3000/api/test-db](http://localhost:3000/api/test-db) — confirms PostgreSQL connectivity (requires a running DB and correct `.env`)
+### 2. Backend (terminal 1)
 
-**Layout:** `server.js` boots Express and mounts routers under `routes/` (`restaurants`, `users`, `reservations`, `reviews`, `platforms`, `dashboard`). Only health routes are implemented so far; CRUD will be added in `routes/*.js` next.
+```bash
+cd backend
+npm install
+cp .env.example .env       # edit .env with your real DB credentials
+npm run dev                # or: node server.js
+```
+
+The API listens on **[http://localhost:3000](http://localhost:3000)**. Sanity check:
+
+- `GET http://localhost:3000/` — JSON welcome payload
+- `GET http://localhost:3000/api/test-db` — confirms PostgreSQL connectivity
+
+Full endpoint list: see `backend/API_DOCUMENTATION.md`.
+
+### 3. Frontend (terminal 2)
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+The UI is served at **[http://localhost:5173](http://localhost:5173)**. It expects the backend at `http://localhost:3000` (override with `VITE_API_URL` if needed).
+
+## Features
+
+- **Dashboard** — totals (users, restaurants, reservations, reviews, average rating, confirmed/cancelled) and a top-rated restaurants table.
+- **Restaurants** — browse cards with search by name/city and cuisine filter; restaurant detail page with reviews.
+- **Reservations** — list, create, edit, cancel, and delete reservations.
+- **Reviews** — list, create, edit, and delete reviews with 1–5 star ratings.
+- **Users** — list users and add new users (no password handling — see notes in `backend/API_DOCUMENTATION.md`).
 
 ## Status
 
-Database: `database/schema.sql`, `database/seed.sql`, and `database/queries.sql` are in place. Backend: Express scaffold with DB pool and health endpoints; API CRUD not implemented yet. Frontend: not started.
+All three layers (database, backend, frontend) are implemented and integrated. See `backend/API_DOCUMENTATION.md` for the full HTTP contract and `database/queries.sql` for example SQL queries.

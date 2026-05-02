@@ -31,7 +31,13 @@ export default function Dashboard() {
 
   useEffect(() => {
     Promise.all([getDashboardStats(), getRestaurants()])
-      .then(([s, r]) => { setStats(s); setRestaurants(r.slice(0, 5)); })
+      .then(([s, r]) => {
+        setStats(s);
+        const sorted = [...r].sort(
+          (a, b) => Number(b.average_rating || 0) - Number(a.average_rating || 0)
+        );
+        setRestaurants(sorted.slice(0, 5));
+      })
       .catch(console.error)
       .finally(() => setLoading(false));
   }, []);
